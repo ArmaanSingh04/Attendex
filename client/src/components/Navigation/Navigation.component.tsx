@@ -3,12 +3,13 @@ import './Navigation.styles.scss'
 import axios from 'axios'
 import { useContext, useEffect } from 'react'
 import { SettingsContext } from '../../context/layout.context'
+import { SERVER_URL } from '../../constants'
 
 const Navigation = () => {
   const { settings, setSettings } = useContext(SettingsContext)
   const getLayouts = async () => {
 
-    await axios.get('/api/layout')
+    await axios.get(`${SERVER_URL}/api/layout`)
       .then((res) => setSettings(res.data))
   }
   useEffect(() => {
@@ -16,7 +17,7 @@ const Navigation = () => {
   }, [])
 
   const generateLayout = () => {
-    axios.post('/api/layout')
+    axios.post(`${SERVER_URL}/api/layout`)
       .then((res) => setSettings(res.data))
   }
   const handleLayoutActivation = async (index: Number) => {
@@ -25,11 +26,11 @@ const Navigation = () => {
     const layoutToActivate = settings.find((lay) => lay.index === index)
     if (activeLayout) {
       activeLayout.active = false
-      await axios.post('/api/layout', activeLayout)
+      await axios.post(`${SERVER_URL}/api/layout`, activeLayout)
     }
     if (layoutToActivate) {
       layoutToActivate.active = true
-      await axios.post('/api/layout', layoutToActivate)
+      await axios.post(`${SERVER_URL}/api/layout`, layoutToActivate)
     }
     getLayouts()
   }

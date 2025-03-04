@@ -2,6 +2,7 @@ import axios from "axios";
 import Cookies from 'js-cookie';
 import { ReactNode, createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { SERVER_URL } from "../constants";
 
 interface AuthContextType {
     auth: boolean;
@@ -22,7 +23,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             navigate('/dashboard')
         }
         else if (!auth && Cookies.get('jwt')){
-            axios.get('/api/profile')
+            axios.get(`${SERVER_URL}/api/profile`)
             .then(res => {
                 if(res.status === 200) {
                     setAuth(true)

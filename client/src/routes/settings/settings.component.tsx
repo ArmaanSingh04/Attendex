@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import { Setting as setting } from '../../components/Layout/Layout';
 import Setting from '../../components/Setting/Setting.component';
+import { SERVER_URL } from '../../constants';
 
 const Settings = () => {
 
@@ -10,7 +11,7 @@ const Settings = () => {
     const [settings , setSettings] = useState<setting[]>([])
 
     useEffect(() => {
-        axios.get('/api/layout')
+        axios.get(`${SERVER_URL}/api/layout`)
             .then(res => {
                 setSettings(res.data)
             })

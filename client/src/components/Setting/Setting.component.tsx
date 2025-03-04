@@ -24,6 +24,7 @@ import { ModalContext } from "../../context/modal.context"
 import './Setting.styles.scss'
 import Modal from "../Modal/Modal.component"
 import { SettingsContext } from "../../context/layout.context";
+import { SERVER_URL } from "../../constants";
 
 const Setting: React.FC<SettingProps> = ({ setting }) => {
 
@@ -31,7 +32,7 @@ const Setting: React.FC<SettingProps> = ({ setting }) => {
     const {setSettings} = useContext(SettingsContext)
 
     const getLayouts = async () => {
-        await axios.get('/api/layout')
+        await axios.get(`${SERVER_URL}/api/layout`)
           .then((res) => setSettings(res.data))
     }
 
@@ -79,7 +80,7 @@ const Setting: React.FC<SettingProps> = ({ setting }) => {
 
         const newObj = { ...setting, startDate: date.startDate, endDate: date.endDate }
 
-        await axios.post('/api/layout', newObj)
+        await axios.post(`${SERVER_URL}/api/layout`, newObj)
         getLayouts()
         setModal(!modal)
         setModalType({
@@ -118,14 +119,14 @@ const Setting: React.FC<SettingProps> = ({ setting }) => {
             {setting?.saturday.push(newEntryData)}
         else if(pTagId == '7')
             {setting?.sunday.push(newEntryData)}
-        await axios.post('/api/layout' , {...setting })
+        await axios.post(`${SERVER_URL}/api/layout` , {...setting })
         getLayouts()
         setModal(!modal)
     }
     const uploadTag = async () => {
         const newArray = setting?.tags
         newArray?.push(newtag)
-        await axios.post('/api/layout', {
+        await axios.post(`${SERVER_URL}/api/layout`, {
             ...setting, tags: newArray
         })
         getLayouts()

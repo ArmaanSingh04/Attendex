@@ -5,6 +5,7 @@ import Modal from '../../components/Modal/Modal.component'
 import { ModalContext } from '../../context/modal.context'
 import { useRecoilState } from 'recoil'
 import { profileState } from '../../atoms'
+import { SERVER_URL } from '../../constants'
 
 interface ModifiedProfile{
     email: string,
@@ -17,7 +18,7 @@ const Profile: React.FC = () => {
 
     const [file , setFile] = useState<File | null>(null)
     const getProfile = async () => {
-        await axios.get('/api/profile')
+        await axios.get(`${SERVER_URL}/api/profile`)
         .then((res) => setProfile({
             username: res.data.username,
             email: res.data.email,
@@ -52,7 +53,7 @@ const Profile: React.FC = () => {
         setModalType('uploadImage')
     }
     const handleSubmit = async () => {
-        await axios.post('/api/profile' , modifiedProfile)
+        await axios.post(`${SERVER_URL}/api/profile` , modifiedProfile)
         alert('profile updated')
         setModal(false)
         setModifiedProfile({
@@ -67,7 +68,7 @@ const Profile: React.FC = () => {
             const formData = new FormData() 
             formData.append('file' , file)
 
-            await axios.post('/api/profile/imageupdate' , formData)
+            await axios.post(`${SERVER_URL}/api/profile/imageupdate` , formData)
             setFile(null)
             setModal(false)
             getProfile()

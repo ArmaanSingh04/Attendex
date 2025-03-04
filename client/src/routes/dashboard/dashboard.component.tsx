@@ -4,6 +4,7 @@ import { addDays, format, parseISO } from 'date-fns'
 import { Setting, DayWiseTags, trackData } from '../../components/Layout/Layout'
 import { SettingsContext } from '../../context/layout.context'
 import axios from 'axios'
+import { SERVER_URL } from '../../constants'
 
 const Dashboard = () => {
   const [inputDate, setInputDate] = useState<string>(format(new Date(), "yyyy-MM-dd"))
@@ -16,7 +17,7 @@ const Dashboard = () => {
   }, [settings])
 
   const getLayouts = async () => {
-    await axios.get('/api/layout')
+    await axios.get(`${SERVER_URL}/api/layout`)
       .then((res) => setSettings(res.data))
   }
 
@@ -52,7 +53,7 @@ const Dashboard = () => {
     return false
   }
   const handleCheckMark = async (trackTag: string, subject: string) => {
-    await axios.post('/api/dashboard', {
+    await axios.post(`${SERVER_URL}/api/dashboard`, {
       index: weekData?.index,
       date: inputDate,
       tag: trackTag,
@@ -63,7 +64,7 @@ const Dashboard = () => {
     getLayouts()
   }
   const handleNotIncludeDay = async (dat: boolean) => {
-    await axios.post('/api/dashboard/day',{
+    await axios.post(`${SERVER_URL}/api/dashboard/day`,{
       date: inputDate,
       include: dat,
       index: weekData?.index
@@ -71,7 +72,7 @@ const Dashboard = () => {
     getLayouts()
   }
   const handleRemoveFromTrack = async (trackTag: string , subject: string) => {
-    await axios.post('/api/dashboard' , {
+    await axios.post(`${SERVER_URL}/api/dashboard` , {
       index: weekData?.index,
       date: inputDate,
       tag: trackTag,
@@ -82,7 +83,7 @@ const Dashboard = () => {
     getLayouts()
   }
   const handleCancellation = async (trackTag: string , subject: string) => {
-    await axios.post('/api/dashboard' , {
+    await axios.post(`${SERVER_URL}/api/dashboard` , {
       index: weekData?.index,
       date: inputDate,
       tag: trackTag,
@@ -93,7 +94,7 @@ const Dashboard = () => {
     getLayouts()
   }
   const handleInclude = async (trackTag: string , subject: string) => {
-    await axios.post('/api/dashboard' , {
+    await axios.post(`${SERVER_URL}/api/dashboard` , {
       index: weekData?.index,
       date: inputDate,
       tag: trackTag,

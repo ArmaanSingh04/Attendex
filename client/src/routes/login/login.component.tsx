@@ -19,7 +19,7 @@ const Login: React.FC = () => {
   }
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    
+    console.log(SERVER_URL)
     // call the server here ...
     axios.post(`${SERVER_URL}/auth/login` , {
       email,

@@ -4,6 +4,7 @@ import './analysis.styles.scss'
 import axios from "axios"
 import { Setting } from "../../components/Layout/Layout"
 import { format } from "date-fns"
+import { SERVER_URL } from "../../constants"
 
 interface data {
   percentage: number,
@@ -20,7 +21,7 @@ const Analysis = () => {
   const [weekData, setWeekData] = useState<Setting | undefined>()
   
   const getData = async() => {
-    const response = await axios.get('/api/analysis')
+    const response = await axios.get(`${SERVER_URL}/api/analysis`)
     setData(response.data)
   }
   useEffect(() => {
