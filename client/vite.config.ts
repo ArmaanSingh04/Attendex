@@ -1,15 +1,15 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import dotenv from "dotenv"
+dotenv.config()
 
+const SERVER_URL = `${process.env.SERVER_URL}`
 // https://vitejs.dev/config/
 export default defineConfig({
-  build: {
-    outDir: '../backend/public'
-  },
   server: {
     proxy: {
-      '/api' : 'http://localhost:3000',
-      '/auth' : 'http://localhost:3000'
+      '/api' : `${SERVER_URL}`,
+      '/auth' : `${SERVER_URL}`
     }
   },
   plugins: [react()],
