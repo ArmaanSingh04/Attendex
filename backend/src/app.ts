@@ -7,22 +7,25 @@ import layoutRouter from './routes/layout/layout.router'
 import dashboardRouter from './routes/dashboard/dashboard.router'
 import analysisRouter from './routes/analysis/analysis.router'
 import { checkAuth } from './routes/auth/auth.controller'
+import dotenv from 'dotenv'
 import cors from "cors"
 
+dotenv.config()
 const app = express()
 
 app.use(express.json())
 app.use(cookieParser())
 
 app.use(cors({
-    origin: ["https://attendex.codingprojects.xyz"],
+    origin: [`${process.env.CLIENT_URL}`],
     credentials: true
 }))
 
 app.use('/auth' , authRouter)
 app.get('/' , (req , res) => {
     res.json({
-        message: "hello world"
+        message: "hello world",
+        clientURL: `${process.env.CLIENT_URL}`
     })
 })
 app.use('/api' , checkAuth , profileRouter)

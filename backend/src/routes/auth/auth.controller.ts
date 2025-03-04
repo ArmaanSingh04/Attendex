@@ -81,12 +81,6 @@ async function checkAuth(req: customRequest , res: customResponse , next: NextFu
         return next()
     }
     const token = req.cookies.jwt
-
-    console.log('logging the cookie')
-    console.log("Received Cookie:", req.cookies);
-    console.log("Set-Cookie Header:", res.getHeader("Set-Cookie"));
-    console.log('logging complete')
-
     if(token == null) return res.sendStatus(401)
     
     try{

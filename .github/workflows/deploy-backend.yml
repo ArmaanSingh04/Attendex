@@ -28,6 +28,7 @@ jobs:
               build-args: |
                 MONGO_URL=${{ secrets.MONGO_URL }}
                 JWT_SECRET=${{ secrets.JWT_SECRET }}
+                CLIENT_URL=${{ secrets.CLIENT_URL }}
           -
             name: Deploy to the vps
             uses: appleboy/ssh-action@v1.2.1
