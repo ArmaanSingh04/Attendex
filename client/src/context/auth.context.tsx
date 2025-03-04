@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         if(auth) {
             navigate('/dashboard')
         }
-        else if (!auth && Cookies.get('jwt')){
+        else if (!auth){
             axios.get(`${SERVER_URL}/api/profile` , {withCredentials: true})
             .then(res => {
                 if(res.status === 200) {
