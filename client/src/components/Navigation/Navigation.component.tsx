@@ -9,7 +9,7 @@ const Navigation = () => {
   const { settings, setSettings } = useContext(SettingsContext)
   const getLayouts = async () => {
 
-    await axios.get(`${SERVER_URL}/api/layout`)
+    await axios.get(`${SERVER_URL}/api/layout`, {withCredentials: true})
       .then((res) => setSettings(res.data))
   }
   useEffect(() => {
@@ -17,7 +17,7 @@ const Navigation = () => {
   }, [])
 
   const generateLayout = () => {
-    axios.post(`${SERVER_URL}/api/layout`)
+    axios.post(`${SERVER_URL}/api/layout`, {withCredentials: true})
       .then((res) => setSettings(res.data))
   }
   const handleLayoutActivation = async (index: Number) => {
@@ -26,11 +26,11 @@ const Navigation = () => {
     const layoutToActivate = settings.find((lay) => lay.index === index)
     if (activeLayout) {
       activeLayout.active = false
-      await axios.post(`${SERVER_URL}/api/layout`, activeLayout)
+      await axios.post(`${SERVER_URL}/api/layout`, activeLayout , {withCredentials: true})
     }
     if (layoutToActivate) {
       layoutToActivate.active = true
-      await axios.post(`${SERVER_URL}/api/layout`, layoutToActivate)
+      await axios.post(`${SERVER_URL}/api/layout`, layoutToActivate , {withCredentials: true})
     }
     getLayouts()
   }

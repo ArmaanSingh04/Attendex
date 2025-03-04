@@ -53,7 +53,12 @@ async function httpLoginUser(req: customRequest , res: customResponse) {
         if(user) {
             if(password === user.password) {
                 const token = createToken(user._id)
-                res.cookie('jwt' , token , { maxAge: maxAgeInSeconds * 1000 })
+                res.cookie('jwt' , token , { 
+                    httpOnly: true,
+                    sameSite: 'none',
+                    secure: true,
+                    maxAge: maxAgeInSeconds * 1000 
+                })
                 res.status(200).json({ user: user._id })
             }
             else {

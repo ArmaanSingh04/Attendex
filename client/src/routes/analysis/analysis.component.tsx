@@ -21,7 +21,7 @@ const Analysis = () => {
   const [weekData, setWeekData] = useState<Setting | undefined>()
   
   const getData = async() => {
-    const response = await axios.get(`${SERVER_URL}/api/analysis`)
+    const response = await axios.get(`${SERVER_URL}/api/analysis` , {withCredentials: true})
     setData(response.data)
   }
   useEffect(() => {

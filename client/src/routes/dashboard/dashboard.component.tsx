@@ -17,7 +17,7 @@ const Dashboard = () => {
   }, [settings])
 
   const getLayouts = async () => {
-    await axios.get(`${SERVER_URL}/api/layout`)
+    await axios.get(`${SERVER_URL}/api/layout` , {withCredentials: true})
       .then((res) => setSettings(res.data))
   }
 
@@ -60,7 +60,7 @@ const Dashboard = () => {
       subject: subject,
       done: true,
       cancelled: false
-    })
+    } , {withCredentials: true})
     getLayouts()
   }
   const handleNotIncludeDay = async (dat: boolean) => {
@@ -68,7 +68,7 @@ const Dashboard = () => {
       date: inputDate,
       include: dat,
       index: weekData?.index
-    })
+    } , {withCredentials: true})
     getLayouts()
   }
   const handleRemoveFromTrack = async (trackTag: string , subject: string) => {
@@ -79,7 +79,7 @@ const Dashboard = () => {
       subject: subject,
       done: false,
       cancelled: false
-    })
+    } , {withCredentials: true})
     getLayouts()
   }
   const handleCancellation = async (trackTag: string , subject: string) => {
@@ -90,7 +90,7 @@ const Dashboard = () => {
       subject: subject,
       done: false,
       cancelled: true
-    })
+    } , {withCredentials: true})
     getLayouts()
   }
   const handleInclude = async (trackTag: string , subject: string) => {
@@ -101,7 +101,7 @@ const Dashboard = () => {
       subject: subject,
       done: false,
       cancelled: false
-    })
+    } , {withCredentials: true})
     getLayouts()
   }
   const checkCancelledOrNot = (trackTag: string , subject: string) =>{ // return true of cancelled

@@ -11,7 +11,7 @@ const Settings = () => {
     const [settings , setSettings] = useState<setting[]>([])
 
     useEffect(() => {
-        axios.get(`${SERVER_URL}/api/layout`)
+        axios.get(`${SERVER_URL}/api/layout` , {withCredentials: true})
             .then(res => {
                 setSettings(res.data)
             })

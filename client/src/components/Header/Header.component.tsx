@@ -17,7 +17,7 @@ const Header = () => {
     const [profile , setProfile] = useRecoilState(profileState)
     
     useEffect(() => {
-        axios.get(`${SERVER_URL}/api/profile`)
+        axios.get(`${SERVER_URL}/api/profile` , {withCredentials: true})
         .then((res) => setProfile({
             username: res.data.username,
             email: res.data.email,

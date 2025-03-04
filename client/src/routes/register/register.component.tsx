@@ -30,7 +30,7 @@ const Register: React.FC = () => {
       await axios.post(`${SERVER_URL}/auth/signup` , {
         email , 
         password
-      })
+      } , {withCredentials: true})
       .then((res) => {
         if(res.status === 201) {
           setAuth(true)

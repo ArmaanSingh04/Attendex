@@ -24,7 +24,7 @@ const Login: React.FC = () => {
     axios.post(`${SERVER_URL}/auth/login` , {
       email,
       password
-    })
+    } , {withCredentials: true})
     .then((res) => {
       if(res.status === 200) {
         setAuth(true)

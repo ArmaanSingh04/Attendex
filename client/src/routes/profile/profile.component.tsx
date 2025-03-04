@@ -18,7 +18,7 @@ const Profile: React.FC = () => {
 
     const [file , setFile] = useState<File | null>(null)
     const getProfile = async () => {
-        await axios.get(`${SERVER_URL}/api/profile`)
+        await axios.get(`${SERVER_URL}/api/profile` , {withCredentials: true})
         .then((res) => setProfile({
             username: res.data.username,
             email: res.data.email,
@@ -53,7 +53,7 @@ const Profile: React.FC = () => {
         setModalType('uploadImage')
     }
     const handleSubmit = async () => {
-        await axios.post(`${SERVER_URL}/api/profile` , modifiedProfile)
+        await axios.post(`${SERVER_URL}/api/profile` , modifiedProfile , {withCredentials: true})
         alert('profile updated')
         setModal(false)
         setModifiedProfile({
@@ -68,7 +68,7 @@ const Profile: React.FC = () => {
             const formData = new FormData() 
             formData.append('file' , file)
 
-            await axios.post(`${SERVER_URL}/api/profile/imageupdate` , formData)
+            await axios.post(`${SERVER_URL}/api/profile/imageupdate` , formData , {withCredentials: true})
             setFile(null)
             setModal(false)
             getProfile()
