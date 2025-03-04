@@ -2,6 +2,8 @@ name: Deployment backend to production
 on:
     push:
         branches: [ prod ]
+        paths: ["backend/**"]
+
 jobs:
     build:
         runs-on: ubuntu-latest
