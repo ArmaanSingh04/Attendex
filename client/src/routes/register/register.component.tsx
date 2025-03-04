@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useContext } from 'react'
 import { AuthContext } from '../../context/auth.context'
 import { Link } from 'react-router-dom'
-import { SERVER_URL } from '../../contant'
+import { SERVER_URL } from '../../constants'
 
 const Register: React.FC = () => {
   const [email , setEmail] = useState<string>('')
