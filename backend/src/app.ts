@@ -7,11 +7,17 @@ import layoutRouter from './routes/layout/layout.router'
 import dashboardRouter from './routes/dashboard/dashboard.router'
 import analysisRouter from './routes/analysis/analysis.router'
 import { checkAuth } from './routes/auth/auth.controller'
+import cors from "cors"
 
 const app = express()
 
 app.use(express.json())
 app.use(cookieParser())
+
+app.use(cors({
+    origin: ["https://attendex.codingprojects.xyz"],
+    credentials: true
+}))
 
 app.use('/auth' , authRouter)
 app.get('/' , (req , res) => {

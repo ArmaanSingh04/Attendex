@@ -4,7 +4,7 @@ import dotenv from "dotenv"
 dotenv.config()
 
 const SERVER_URL = `${process.env.SERVER_URL}`
-// https://vitejs.dev/config/
+
 export default defineConfig({
   server: {
     proxy: {
