@@ -4,6 +4,7 @@ import './login.styles.scss'
 import { useContext } from 'react'
 import { AuthContext } from '../../context/auth.context'
 import { Link } from 'react-router-dom'
+import { SERVER_URL } from '../../contant'
 
 const Login: React.FC = () => {
   const [email , setEmail] = useState<string>('')
@@ -20,7 +21,7 @@ const Login: React.FC = () => {
     e.preventDefault()
     
     // call the server here ...
-    axios.post('/auth/login' , {
+    axios.post(`${SERVER_URL}/auth/login` , {
       email,
       password
     })
