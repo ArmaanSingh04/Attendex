@@ -17,6 +17,7 @@ const Profile: React.FC = () => {
     const [profile , setProfile] = useRecoilState(profileState);
 
     const [file , setFile] = useState<File | null>(null)
+    console.log(profile)
     const getProfile = async () => {
         await axios.get(`${SERVER_URL}/api/profile` , {withCredentials: true})
         .then((res) => setProfile({
@@ -116,7 +117,7 @@ const Profile: React.FC = () => {
         <div className="profile">
             <div className="left">
                 <div className="photo">
-                    <img src={`/api/images/${profile.photoURL}`} alt="" onClick={handleUploadImageModal}/>
+                    <img src={`${profile.photoURL}`} alt="" onClick={handleUploadImageModal}/>
                 </div>
     
                 <span>Profile</span>

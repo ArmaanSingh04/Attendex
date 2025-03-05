@@ -27,7 +27,7 @@ const Header = () => {
     return (
         <div className="header">
             <p>{location.pathname.replace("/","").charAt(0).toUpperCase() + location.pathname.slice(2)}</p>
-            <img onClick={() => imageClick()} src={`/api/images/${profile.photoURL}`} alt="" />
+            <img onClick={() => imageClick()} src={`${profile.photoURL}`} alt="" />
         </div>
     )
 }
