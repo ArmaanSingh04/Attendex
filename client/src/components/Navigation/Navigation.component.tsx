@@ -17,7 +17,7 @@ const Navigation = () => {
   }, [])
 
   const generateLayout = () => {
-    axios.post(`${SERVER_URL}/api/layout`, {withCredentials: true})
+    axios.post(`${SERVER_URL}/api/layout`, {}, {withCredentials: true})
       .then((res) => setSettings(res.data))
   }
   const handleLayoutActivation = async (index: Number) => {
