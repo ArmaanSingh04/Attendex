@@ -1,5 +1,5 @@
 import './App.css'
-import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom'
 import Register from './routes/register/register.component'
 import Login from './routes/login/login.component'
 import Profile from './routes/profile/profile.component'
@@ -14,6 +14,7 @@ import { RecoilRoot } from 'recoil'
 import Dashboard from './routes/dashboard/dashboard.component'
 import Analysis from './routes/analysis/analysis.component'
 import Support from './routes/support/support.component'
+import Landing from './routes/landing/landing.component'
 
 const App = () => {
 
@@ -32,9 +33,10 @@ const App = () => {
                     <Route path="/analysis" element={<Analysis />} />
                     <Route path="/layout/:settingid" element={<Settings />} />
                     <Route path="/support" element={<Support />} />
-                    <Route path="/"/>
+                    <Route path="/" element={<Navigate to="/landing" />} />
                   </Route>
                 </Route>
+                <Route path="/landing" element={<Landing />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
               </Routes>
